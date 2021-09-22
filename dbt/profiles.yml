@@ -1,0 +1,14 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: mysql
+      server: localhost
+      port: 3306
+      schema: dbtdb
+      username: root
+      password: root
+
+
+
+  
