@@ -1,0 +1,14 @@
+version: 2
+sources:
+  - name: station_sensors
+    description: "Data of our different stations and sensors along the I80"
+    schema: dbtdb
+    tables:
+      - name: station_info
+      - name: sensor_data
+      - name: station_summary
+models:
+  - name: sensors_model
+  - name: stations_model
+  - name: station_summary_model
+  - name: station_info_summary

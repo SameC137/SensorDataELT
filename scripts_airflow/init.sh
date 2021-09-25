@@ -20,7 +20,7 @@ airflow users  create --role Admin --username admin --email admin --firstname ad
 sleep 10
 airflow connections add 'mysql_conn_id'  --conn-uri "mysql+mysqldb://${DBT_MYSQL_USER}:${DBT_MYSQL_PASSWORD}@${DBT_MYSQL_HOST}:${MYSQL_PORT}/${DBT_MYSQL_DB}"
 
-sleep 30
+sleep 20
 airflow scheduler & airflow webserver
 
 
