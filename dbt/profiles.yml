@@ -3,9 +3,9 @@ default:
   outputs:
     dev:
       type: mysql
-      server: localhost
+      server: mysqldb
       port: 3306
-      schema: dbtdb
+      schema: analytics
       username: root
       password: root
 

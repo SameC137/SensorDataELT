@@ -1,6 +1,7 @@
 from airflow import DAG
 from airflow.providers.mysql.operators.mysql import MySqlOperator
 
+
 from datetime import datetime as dt
 
 from datetime import timedelta
@@ -51,5 +52,20 @@ insert_sensor = MySqlOperator(
     sql='./insert_sensor_data.sql',
     dag=dag
 )
+create_station_summary=MySqlOperator(
+    task_id='create_sensor_summary_table',
+    mysql_conn_id="mysql_conn_id",
+    sql='./create_station_summary.sql',
+    dag=dag
+)
 
-create_station>>create_sensor>>insert_station>>insert_sensor
+inset_station_summary=MySqlOperator(
+    task_id='insert_sensor_summary_table',
+    mysql_conn_id="mysql_conn_id",
+    sql='./insert_station_summary.sql',
+    dag=dag
+)
+
+
+create_station>>insert_station>>create_sensor>>insert_sensor
+create_station>>insert_station>>create_station_summary>>inset_station_summary
