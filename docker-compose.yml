@@ -23,10 +23,10 @@ services:
     volumes:
       - ./scripts_postgres:/docker-entrypoint-initdb.d
       # - ./sample_data:/sample_data
-  # postgres:
-  #   image: postgres
-  #   env_file: redash.env
-  #   restart: always
+  postgres:
+    image: postgres
+    env_file: redash.env
+    restart: always
 
   postgres-dbt:
     image: postgres
@@ -50,8 +50,8 @@ services:
       MYSQL_PORT_3306_TCP_PORT: 3306
     container_name: mysql_container_test
     command: [ "--default-authentication-plugin=mysql_native_password" ]
-    ports:
-      - 3306:3306
+    expose:
+      - 3306
     volumes:
       - ./mysql.cnf:/etc/mysql/mysql.cnf  
       - ./my.cnf:/etc/mysql/my.cnf  
@@ -97,7 +97,6 @@ services:
       - 8000:8080
     volumes:
       - ./dbt:/dbt
-      
       - ./data:/data
       - ./airflow:/airflow
 

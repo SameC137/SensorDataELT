@@ -1,5 +1,5 @@
 LOAD DATA 
-INFILE '/var/lib/mysql-files/I80_sample.txt' 
+INFILE '/var/lib/mysql-files/I80_davis.txt' 
 INTO TABLE sensor_data 
 FIELDS TERMINATED BY ',' 
 LINES TERMINATED BY '\n' 

@@ -17,7 +17,7 @@ airflow db upgrade
 airflow users  create --role Admin --username admin --email admin --firstname admin --lastname admin --password admin
 
 sleep 10
-airflow connections add 'mysql_conn_id'  --conn-uri "mysql+mysqldb://${DBT_MYSQL_USER}:${DBT_MYSQL_PASSWORD}@${DBT_MYSQL_HOST}:${MYSQL_PORT}/${DBT_MYSQL_DB}"
+airflow connections add 'mysql_conn_id'  --conn-uri "mysql://${DBT_MYSQL_USER}:${DBT_MYSQL_PASSWORD}@${DBT_MYSQL_HOST}:${MYSQL_PORT}/${DBT_MYSQL_DB}"
 
 airflow connections add 'postgres_conn_id'  --conn-uri "postgresql+psycopg2://${DBT_POSTGRES_USER}:${DBT_POSTGRES_PASSWORD}@${DBT_POSTGRES_HOST}:${POSTGRES_PORT}/${DBT_POSTGRES_DB}"
 

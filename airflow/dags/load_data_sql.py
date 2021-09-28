@@ -25,7 +25,7 @@ dag = DAG(
 create_station = MySqlOperator(
     task_id='create_station_table',
     mysql_conn_id="mysql_conn_id",
-    sql='./create_station.sql',
+    sql='./mysql_sql/create_station.sql',
     dag=dag
 )
 
@@ -33,7 +33,7 @@ create_station = MySqlOperator(
 create_sensor = MySqlOperator(
     task_id='create_sensor_table',
     mysql_conn_id="mysql_conn_id",
-    sql='./create_sensor_data.sql',
+    sql='./mysql_sql/create_sensor_data.sql',
     dag=dag
 )
 
@@ -41,7 +41,7 @@ create_sensor = MySqlOperator(
 insert_station = MySqlOperator(
     task_id='insert_station_table',
     mysql_conn_id="mysql_conn_id",
-    sql='./insert_station_data.sql',
+    sql='./mysql_sql/insert_station_data.sql',
     dag=dag
 )
 
@@ -49,20 +49,20 @@ insert_station = MySqlOperator(
 insert_sensor = MySqlOperator(
     task_id='insert_sensor_table',
     mysql_conn_id="mysql_conn_id",
-    sql='./insert_sensor_data.sql',
+    sql='./mysql_sql/insert_sensor_data.sql',
     dag=dag
 )
 create_station_summary=MySqlOperator(
     task_id='create_sensor_summary_table',
     mysql_conn_id="mysql_conn_id",
-    sql='./create_station_summary.sql',
+    sql='./mysql_sql/create_station_summary.sql',
     dag=dag
 )
 
 inset_station_summary=MySqlOperator(
     task_id='insert_sensor_summary_table',
     mysql_conn_id="mysql_conn_id",
-    sql='./insert_station_summary.sql',
+    sql='./mysql_sql/insert_station_summary.sql',
     dag=dag
 )
 

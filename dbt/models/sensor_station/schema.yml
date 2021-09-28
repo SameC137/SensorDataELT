@@ -5,10 +5,64 @@ sources:
     schema: dbtdb
     tables:
       - name: station_info
+        description: "Station Metadata is small- just 53 stations. Contains the information about the different stations"
       - name: sensor_data
+        description: "Main data is around 35 million observations. Data of our sensors at different stations at different time stamps."      
       - name: station_summary
+        description: "Summary statistics of trafic flow for each station"
 models:
   - name: sensors_model
+    description: "Data of our sensors at different stations at different time stamps."
+    columns:
+        - name: sense_id
+          description: "The primary key for this table. Identifies the observation"
+        - name: date_time
+          description: "Time stamp of the observation" 
+        - name: station_id
+          description: "Identifies the station where the observation occured"     
   - name: stations_model
+    description: "Contains the information about the different stations"
+    columns:
+        - name: station_id
+          description: "The primary key for this table. Identifies the station"      
+          tests:
+              - unique
+              - not_null 
+        - name: Dir
+          description: "Direction of the station"
+        - name: District
+          description: "District of the station"
+        - name: County
+          description: "County of the station"
+        - name: City
+          description: "City of the station"
+        - name: Latitude
+          description: "Latitude of the station"
+        - name: Longitude
+          description: "Longitude of the station"
+        - name: Lanes
+          description: "Number of lanes for the station"
+        - name: Name
+          description: "Name of the station"
   - name: station_summary_model
+    description: "Summary statistics of trafic flow for each station"
+    columns:
+        - name: summary_id
+          description: "The primary key for this table. Identifies the summary"      
+          tests:
+              - unique
+              - not_null 
+        - name: station_id
+          description: "Identifies the station to which this summary describes"
+        - name: flow_99
+          description: "Flow 99th percentile"    
+        - name: flow_max
+          description: "Maximum flow observerd"     
+        - name: flow_median
+          description: "Median of flow observations"       
+        - name: flow_total
+          description: "Total flow of trafic through station"  
+        - name: n_obs
+          description: "Number of observations"
   - name: station_info_summary
+    description: "Combines the information for the station. The summary and the meta information are combined together in a single model"
