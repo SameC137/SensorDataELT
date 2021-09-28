@@ -8,7 +8,6 @@ AIRFLOW__WEBSERVER__SECRET_KEY="openssl rand -hex 30"
 export AIRFLOW__WEBSERVER__SECRET_KEY
 
 
-DBT_POSTGRESQL_CONN="mysql+mysqldb://${DBT_MYSQL_USER}:${DBT_MYSQL_PASSWORD}@${DBT_MYSQL_HOST}:${MYSQL_PORT}/${DBT_MYSQL_DB}"
 
 cd /dbt && dbt compile
 rm -f /airflow/airflow-webserver.pid
@@ -19,6 +18,8 @@ airflow users  create --role Admin --username admin --email admin --firstname ad
 
 sleep 10
 airflow connections add 'mysql_conn_id'  --conn-uri "mysql+mysqldb://${DBT_MYSQL_USER}:${DBT_MYSQL_PASSWORD}@${DBT_MYSQL_HOST}:${MYSQL_PORT}/${DBT_MYSQL_DB}"
+
+airflow connections add 'postgres_conn_id'  --conn-uri "postgresql+psycopg2://${DBT_POSTGRES_USER}:${DBT_POSTGRES_PASSWORD}@${DBT_POSTGRES_HOST}:${POSTGRES_PORT}/${DBT_POSTGRES_DB}"
 
 sleep 20
 airflow scheduler & airflow webserver
